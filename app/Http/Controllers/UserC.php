@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Auth;
 
 class UserC extends Controller
 {
@@ -93,4 +94,28 @@ class UserC extends Controller
     
             }
         }
+        public function login(Request $request)
+        {
+            $request->validate([
+                'user_email'    => 'required',
+                'user_password' => 'required',
+            ]);
+
+            $credentials = request(['email', 'password']);
+            if(Auth::attempt())
+
+            $login_type = filter_var($request->input('login'), FILTER_VALIDATE_EMAIL ) 
+                ? 'user_email' 
+                : 'user_phone';
+
+            $request->merge([
+                $login_type => $request->input('login')
+            ]);
+
+            if (Auth::attempt($request->only($login_type, 'user_password'))) {
+                return response();
+            }
+
+            return response();
+        } 
 }

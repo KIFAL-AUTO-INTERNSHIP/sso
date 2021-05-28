@@ -28,6 +28,7 @@ Route::get('app', 'AppC@getApp');
 Route::post('app', 'AppC@addApp');
 Route::get('user', 'UserC@getUser');
 Route::post('user', 'UserC@addUser');
+Route::post('login', 'UserC@login');
 Route::post('validuser', 'UserC@testUser');
 Route::get('finduser/{phone}', 'UserC@findUserByPhone');
 Route::get('finduser/{phone}', 'UserC@findUserByEmail');
