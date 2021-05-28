@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 
 class UserC extends Controller
@@ -19,7 +19,7 @@ class UserC extends Controller
         $user= new User;
         $user->user_firstname=$req->user_firstname;
         $user->user_lastname=$req->user_lastname;
-        $user->user_password=$req->user_password;
+        $user->user_password=Hash::make($req->user_password);
         $user->user_email=$req->user_email;
         $user->user_phone=$req->user_phone;
         $user->user_token=$req->user_token;

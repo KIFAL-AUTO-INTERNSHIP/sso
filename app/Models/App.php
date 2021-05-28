@@ -11,7 +11,6 @@ class App extends Model
     protected $table = 'app';
     protected $primaryKey = 'app_id';
     public $timestamps = false;
-
     protected $fillable = [
         'app_name',
         'app_key',
